@@ -1,15 +1,16 @@
 
-/* ========================================
-   1. VARIABLES Y REINICIO
-======================================== */
+/* ==========================================
+   1. VARIABLES Y CONFIGURACIÓN GENERAL
+========================================== */
 
 :root {
-  --background: #101010;
-  --surface: #181818;
-  --surface-light: #222222;
+  --background: #090909;
+  --surface: #151515;
+  --surface-light: #222;
   --text: #f4f1eb;
   --muted: #aaa7a1;
-  --accent: #c63c35;
+  --accent: #e34b43;
+  --gold: #e7c98a;
   --border: rgba(255, 255, 255, 0.15);
   --container: 1200px;
 }
@@ -22,7 +23,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 85px;
+  scroll-padding-top: 95px;
 }
 
 body {
@@ -30,6 +31,7 @@ body {
   color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.7;
+  overflow-wrap: break-word;
 }
 
 body.menu-open {
@@ -48,7 +50,8 @@ img {
   object-fit: cover;
 }
 
-button {
+button,
+input {
   font: inherit;
 }
 
@@ -58,9 +61,10 @@ a {
 }
 
 button:focus-visible,
-a:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 5px;
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
 }
 
 ::selection {
@@ -68,25 +72,52 @@ a:focus-visible {
   color: white;
 }
 
-/* ========================================
-   2. NAVEGACIÓN
-======================================== */
+/* ==========================================
+   2. BARRA DE PROGRESO
+========================================== */
+
+.reading-progress {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 200;
+  height: 3px;
+  background: transparent;
+}
+
+#progress-bar {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    #e34b43,
+    #e7c98a,
+    #8b72e8
+  );
+}
+
+/* ==========================================
+   3. ENCABEZADO Y NAVEGACIÓN
+========================================== */
 
 .site-header {
   min-height: 84px;
-  padding: 18px 7%;
+  padding: 16px 7%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 30px;
-  background: #0c0c0c;
-  border-bottom: 1px solid var(--border);
+  gap: 25px;
   position: sticky;
   top: 0;
   z-index: 100;
+  border-bottom: 1px solid var(--border);
+  background: rgba(9, 9, 9, 0.9);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 }
 
 .logo {
+  flex-shrink: 0;
   font-size: 1.35rem;
   font-weight: 900;
   letter-spacing: 4px;
@@ -104,19 +135,42 @@ a:focus-visible {
 .main-nav {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 28px;
 }
 
 .main-nav a {
   color: #dedbd5;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: bold;
   letter-spacing: 1.5px;
-  transition: color 0.25s ease;
+  transition: color 0.25s;
 }
 
 .main-nav a:hover {
   color: var(--accent);
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+}
+
+.icon-button {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--gold);
+  background: transparent;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.icon-button:hover {
+  transform: rotate(35deg);
+  background: #28201b;
 }
 
 .menu-toggle {
@@ -128,60 +182,76 @@ a:focus-visible {
 
 .menu-toggle span {
   display: block;
-  width: 26px;
+  width: 25px;
   height: 2px;
   margin: 6px 0;
   background: white;
-  transition: transform 0.25s ease;
+  transition: transform 0.25s, opacity 0.25s;
 }
 
-/* ========================================
-   3. PORTADA
-======================================== */
+/* ==========================================
+   4. PORTADA CINEMATOGRÁFICA
+========================================== */
 
-.hero {
-  min-height: 650px;
-  height: min(78vh, 850px);
+.hero-enhanced {
+  isolation: isolate;
   position: relative;
+  min-height: 680px;
+  height: min(82vh, 900px);
+  padding: 8%;
   display: flex;
   align-items: center;
-  padding: 8%;
-  background:
-    linear-gradient(90deg, rgba(0, 0, 0, 0.88), transparent 100%),
-    url("https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=2000&q=90")
-    center 45% / cover no-repeat;
+  overflow: hidden;
+  background: #080808;
 }
 
-.hero-overlay {
+.hero-backdrop {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    0deg,
-    rgba(16, 16, 16, 0.9),
-    transparent 55%,
-    rgba(0, 0, 0, 0.15)
-  );
+  z-index: -3;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.97) 0%,
+      rgba(0, 0, 0, 0.78) 45%,
+      rgba(0, 0, 0, 0.25) 100%
+    ),
+    url("https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=2000&q=90")
+    center 45% / cover no-repeat;
+  animation: heroReveal 1.2s ease both;
+}
+
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.11;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");
 }
 
 .hero-content {
-  max-width: 720px;
   position: relative;
   z-index: 1;
+  width: 100%;
+  max-width: 760px;
+  animation: contentReveal 1s 0.15s ease both;
 }
 
 .eyebrow {
+  margin-bottom: 18px;
   color: var(--accent);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: bold;
   letter-spacing: 3px;
-  margin-bottom: 18px;
 }
 
 .hero h1 {
-  font-size: clamp(3.5rem, 9vw, 7.7rem);
+  font-size: clamp(3.3rem, 8.5vw, 7.4rem);
   font-weight: 900;
-  line-height: 0.94;
+  line-height: 0.98;
   letter-spacing: -4px;
+  text-wrap: balance;
 }
 
 .hero h1 span,
@@ -192,25 +262,36 @@ a:focus-visible {
 
 .hero-description {
   max-width: 470px;
-  margin: 26px 0 32px;
+  margin: 27px 0 32px;
   color: #dedbd5;
   font-size: 1rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 25px;
 }
 
 .button {
   display: inline-flex;
   align-items: center;
-  gap: 25px;
+  justify-content: center;
+  gap: 20px;
   padding: 14px 22px;
-  font-size: 0.73rem;
+  font-size: 0.7rem;
   font-weight: bold;
-  letter-spacing: 1.5px;
-  transition: background 0.25s, color 0.25s;
+  letter-spacing: 1.3px;
+  transition:
+    background 0.25s,
+    color 0.25s,
+    border-color 0.25s;
 }
 
 .button-light {
-  color: #111;
   background: var(--text);
+  color: #111;
 }
 
 .button-light:hover {
@@ -218,18 +299,88 @@ a:focus-visible {
   color: white;
 }
 
-.hero-caption {
-  position: absolute;
-  bottom: 28px;
-  right: 7%;
-  color: white;
-  font-size: 0.65rem;
-  letter-spacing: 3px;
+.hero-secondary-link {
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  font-size: 0.68rem;
+  letter-spacing: 1.3px;
 }
 
-/* ========================================
-   4. BARRA EDITORIAL
-======================================== */
+.hero-secondary-link:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+/* Prisma decorativo */
+
+.hero-prism {
+  position: absolute;
+  top: 10%;
+  right: 8%;
+  width: min(38vw, 460px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  animation: prismFloat 7s ease-in-out infinite;
+}
+
+.prism-triangle {
+  width: 67%;
+  aspect-ratio: 1;
+  clip-path: polygon(50% 0, 100% 88%, 0 88%);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(100, 100, 100, 0.12) 55%,
+    rgba(255, 255, 255, 0.3)
+  );
+  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.25));
+  opacity: 0.75;
+}
+
+.rainbow-beam {
+  position: absolute;
+  top: 42%;
+  left: 55%;
+  width: 100%;
+  height: 10px;
+  transform: rotate(25deg);
+  transform-origin: left center;
+  background: linear-gradient(
+    90deg,
+    #ff4646,
+    #ffbd52,
+    #fff46b,
+    #62e69c,
+    #62baff,
+    #b27aff,
+    transparent
+  );
+  filter: blur(7px);
+  opacity: 0.7;
+}
+
+.hero-bottom {
+  position: absolute;
+  bottom: 25px;
+  left: 7%;
+  right: 7%;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  color: #ddd;
+  font-size: 0.6rem;
+  letter-spacing: 1.5px;
+}
+
+.hero-bottom a:hover {
+  color: var(--gold);
+}
+
+/* ==========================================
+   5. FRANJA EDITORIAL
+========================================== */
 
 .editorial-bar {
   min-height: 65px;
@@ -241,17 +392,17 @@ a:focus-visible {
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   color: var(--muted);
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   letter-spacing: 1.5px;
 }
 
-/* ========================================
-   5. SECCIONES GENERALES
-======================================== */
+/* ==========================================
+   6. SECCIONES Y TÍTULOS
+========================================== */
 
 .section {
   max-width: var(--container);
-  margin: auto;
+  margin: 0 auto;
   padding: 100px 7%;
 }
 
@@ -274,14 +425,14 @@ a:focus-visible {
 .section-index {
   padding-bottom: 8px;
   color: var(--muted);
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   letter-spacing: 2px;
   white-space: nowrap;
 }
 
-/* ========================================
-   6. NOTICIA PRINCIPAL
-======================================== */
+/* ==========================================
+   7. NOTICIA PRINCIPAL
+========================================== */
 
 .featured-news {
   display: grid;
@@ -291,22 +442,22 @@ a:focus-visible {
 }
 
 .featured-image {
-  min-height: 420px;
-  height: 100%;
   position: relative;
+  display: block;
+  min-height: 400px;
   overflow: hidden;
   background: var(--surface);
 }
 
 .featured-image img,
-.news-card img,
+.news-card > img,
 .album-cover img,
 .history-image img {
   transition: transform 0.6s ease;
 }
 
 .featured-image:hover img,
-.news-card:hover img,
+.news-card:hover > img,
 .album-card:hover .album-cover img {
   transform: scale(1.045);
 }
@@ -317,7 +468,7 @@ a:focus-visible {
   left: 20px;
   padding: 7px 12px;
   background: var(--accent);
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   font-weight: bold;
   letter-spacing: 1.5px;
 }
@@ -325,9 +476,9 @@ a:focus-visible {
 .article-meta {
   margin-bottom: 13px;
   color: var(--accent);
-  font-size: 0.67rem;
+  font-size: 0.65rem;
   font-weight: bold;
-  letter-spacing: 1.8px;
+  letter-spacing: 1.7px;
 }
 
 .featured-copy h3 {
@@ -339,30 +490,30 @@ a:focus-visible {
 .featured-copy > p:not(.article-meta) {
   margin-bottom: 25px;
   color: var(--muted);
-  font-size: 0.94rem;
+  font-size: 0.92rem;
 }
 
 .text-link {
   display: inline-block;
   padding-bottom: 5px;
   border-bottom: 1px solid var(--accent);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: bold;
   letter-spacing: 1px;
 }
 
 .text-link span {
-  margin-left: 10px;
+  margin-left: 8px;
   color: var(--accent);
 }
 
 .text-link:hover {
-  color: var(--accent);
+  color: var(--gold);
 }
 
-/* ========================================
-   7. NOTICIAS SECUNDARIAS
-======================================== */
+/* ==========================================
+   8. TARJETAS DE NOTICIAS
+========================================== */
 
 .news-grid {
   display: grid;
@@ -372,6 +523,7 @@ a:focus-visible {
 }
 
 .news-card {
+  min-width: 0;
   overflow: hidden;
   background: var(--surface);
 }
@@ -386,28 +538,28 @@ a:focus-visible {
 
 .news-card h3 {
   margin-bottom: 12px;
-  font-size: 1.35rem;
+  font-size: 1.3rem;
   line-height: 1.3;
 }
 
 .news-card-content > p:not(.article-meta) {
   margin-bottom: 22px;
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
 }
 
 .editorial-note {
   margin-top: 25px;
   color: var(--muted);
-  font-size: 0.76rem;
+  font-size: 0.74rem;
 }
 
-/* ========================================
-   8. ÁLBUMES
-======================================== */
+/* ==========================================
+   9. DISCOGRAFÍA
+========================================== */
 
 .albums-section {
-  background: #171717;
+  background: #141414;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
@@ -416,7 +568,7 @@ a:focus-visible {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin: -10px 0 35px;
+  margin: -10px 0 30px;
 }
 
 .filter-button {
@@ -424,11 +576,11 @@ a:focus-visible {
   border: 1px solid var(--border);
   background: transparent;
   color: var(--muted);
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   font-weight: bold;
   letter-spacing: 1px;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.25s;
 }
 
 .filter-button:hover,
@@ -438,6 +590,50 @@ a:focus-visible {
   color: white;
 }
 
+/* Buscador */
+
+.album-search {
+  max-width: 450px;
+  margin: 0 0 35px;
+}
+
+.album-search label {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 0.65rem;
+  letter-spacing: 1.5px;
+}
+
+.album-search input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  outline: none;
+  background: #101010;
+  color: white;
+  font-size: 0.9rem;
+  transition: border-color 0.25s;
+}
+
+.album-search input:focus {
+  border-color: var(--gold);
+}
+
+.album-search input::placeholder {
+  color: #777;
+}
+
+.search-status {
+  min-height: 24px;
+  padding-top: 6px;
+  color: var(--muted);
+  font-size: 0.74rem;
+}
+
+/* Cuadrícula de discos */
+
 .album-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -446,17 +642,24 @@ a:focus-visible {
 
 .album-card {
   min-width: 0;
+  align-self: start;
   animation: appear 0.35s ease;
+  transition: transform 0.3s ease;
+}
+
+.album-card:hover {
+  transform: translateY(-7px);
 }
 
 .album-card[hidden] {
-  display: none;
+  display: none !important;
 }
 
 .album-cover {
   position: relative;
   aspect-ratio: 1 / 1;
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
   background: var(--surface-light);
 }
 
@@ -465,7 +668,7 @@ a:focus-visible {
   right: 12px;
   bottom: 12px;
   padding: 5px 9px;
-  background: rgba(0, 0, 0, 0.78);
+  background: rgba(0, 0, 0, 0.8);
   font-size: 0.75rem;
   font-weight: bold;
 }
@@ -473,7 +676,7 @@ a:focus-visible {
 .album-number {
   margin-top: 18px;
   color: var(--accent);
-  font-size: 0.61rem;
+  font-size: 0.6rem;
   letter-spacing: 1.5px;
 }
 
@@ -481,16 +684,43 @@ a:focus-visible {
   margin: 8px 0;
   font-size: 1.05rem;
   line-height: 1.35;
+  transition: color 0.25s;
 }
 
-.album-card > p:last-child {
+.album-card:hover h3 {
+  color: var(--gold);
+}
+
+.album-description {
   color: var(--muted);
-  font-size: 0.83rem;
+  font-size: 0.82rem;
 }
 
-/* ========================================
-   9. HISTORIA
-======================================== */
+.album-details-button {
+  margin-top: 17px;
+  padding: 9px 0;
+  border: 0;
+  border-bottom: 1px solid var(--accent);
+  background: transparent;
+  color: var(--text);
+  font-size: 0.64rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.album-details-button span {
+  margin-left: 5px;
+  color: var(--accent);
+}
+
+.album-details-button:hover {
+  color: var(--gold);
+}
+
+/* ==========================================
+   10. HISTORIA
+========================================== */
 
 .history-section {
   display: grid;
@@ -500,9 +730,13 @@ a:focus-visible {
 }
 
 .history-image {
-  min-height: 480px;
+  min-height: 450px;
   overflow: hidden;
   background: var(--surface);
+}
+
+.history-image:hover img {
+  transform: scale(1.035);
 }
 
 .history-copy h2 {
@@ -512,12 +746,14 @@ a:focus-visible {
 .history-copy > p:not(.eyebrow) {
   margin-bottom: 18px;
   color: var(--muted);
-  font-size: 0.94rem;
+  font-size: 0.92rem;
 }
 
 .button-outline {
   margin-top: 12px;
   border: 1px solid var(--border);
+  background: transparent;
+  color: white;
 }
 
 .button-outline:hover {
@@ -525,14 +761,14 @@ a:focus-visible {
   background: var(--accent);
 }
 
-/* ========================================
-   10. CITA
-======================================== */
+/* ==========================================
+   11. CITA
+========================================== */
 
 .quote-section {
   padding: 85px 7%;
   text-align: center;
-  background: #191919;
+  background: #171717;
   border-top: 1px solid var(--border);
 }
 
@@ -548,20 +784,20 @@ a:focus-visible {
 .quote-section > p {
   max-width: 800px;
   margin: 15px auto;
-  font-size: clamp(1.15rem, 3vw, 2.3rem);
+  font-size: clamp(1.1rem, 3vw, 2.3rem);
   font-weight: bold;
   letter-spacing: 1px;
 }
 
 .quote-author {
   color: var(--muted);
-  font-size: 0.65rem;
+  font-size: 0.63rem;
   letter-spacing: 2px;
 }
 
-/* ========================================
-   11. PIE DE PÁGINA
-======================================== */
+/* ==========================================
+   12. PIE DE PÁGINA
+========================================== */
 
 .site-footer {
   padding: 55px 7% 25px;
@@ -577,7 +813,7 @@ a:focus-visible {
 .site-footer > p {
   margin: 12px 0 25px;
   color: var(--muted);
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   letter-spacing: 1px;
 }
 
@@ -602,12 +838,175 @@ a:focus-visible {
   margin-top: 35px;
   padding-top: 22px;
   border-top: 1px solid var(--border);
-  font-size: 0.65rem;
+  font-size: 0.64rem;
 }
 
-/* ========================================
-   12. ANIMACIONES
-======================================== */
+/* ==========================================
+   13. VENTANA DE DETALLES
+========================================== */
+
+.album-dialog {
+  width: min(90%, 560px);
+  max-height: 85vh;
+  overflow-y: auto;
+  margin: auto;
+  padding: clamp(25px, 5vw, 45px);
+  border: 1px solid rgba(231, 201, 138, 0.4);
+  background: #111;
+  color: var(--text);
+}
+
+.album-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.83);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+}
+
+.album-dialog[open] {
+  animation: dialogReveal 0.25s ease both;
+}
+
+.dialog-close {
+  float: right;
+  width: 38px;
+  height: 38px;
+  margin: -10px -10px 20px 15px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: white;
+  font-size: 1.7rem;
+  cursor: pointer;
+}
+
+.dialog-close:hover {
+  background: var(--accent);
+}
+
+.dialog-year {
+  margin: 15px 0 5px;
+  color: var(--gold);
+  letter-spacing: 2px;
+}
+
+.album-dialog h2 {
+  margin-bottom: 20px;
+  font-size: clamp(1.8rem, 6vw, 2.8rem);
+  line-height: 1.1;
+}
+
+.album-dialog p:not(.eyebrow, .dialog-year) {
+  margin-bottom: 20px;
+  color: var(--muted);
+}
+
+.album-dialog h3 {
+  margin: 25px 0 10px;
+  font-size: 0.74rem;
+  letter-spacing: 1.5px;
+}
+
+/* ==========================================
+   14. BOTÓN VOLVER ARRIBA
+========================================== */
+
+#back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 90;
+  width: 45px;
+  height: 45px;
+  border: 1px solid var(--border);
+  background: #222;
+  color: white;
+  font-size: 1.4rem;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.25s;
+}
+
+#back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+#back-to-top:hover {
+  background: var(--accent);
+}
+
+/* ==========================================
+   15. ANIMACIONES AL DESPLAZARSE
+========================================== */
+
+.reveal-ready .reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+.reveal-ready .reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================
+   16. EFECTOS VISUALES
+========================================== */
+
+body.effects-off .hero-prism,
+body.effects-off .hero-content,
+body.effects-off .hero-backdrop {
+  animation: none !important;
+}
+
+body.effects-off .reveal-on-scroll {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* ==========================================
+   17. ANIMACIONES CSS
+========================================== */
+
+@keyframes heroReveal {
+  from {
+    transform: scale(1.06);
+    opacity: 0.5;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes contentReveal {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes prismFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+
+  50% {
+    transform: translateY(-18px) rotate(3deg);
+  }
+}
 
 @keyframes appear {
   from {
@@ -621,17 +1020,34 @@ a:focus-visible {
   }
 }
 
-/* ========================================
-   13. TABLET
-======================================== */
+@keyframes dialogReveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ==========================================
+   18. TABLET
+========================================== */
 
 @media (max-width: 950px) {
   .site-header {
     padding-inline: 5%;
+    gap: 16px;
   }
 
   .main-nav {
-    gap: 17px;
+    gap: 16px;
+  }
+
+  .main-nav a {
+    font-size: 0.65rem;
   }
 
   .featured-news {
@@ -652,32 +1068,40 @@ a:focus-visible {
   }
 }
 
-/* ========================================
-   14. MÓVILES
-======================================== */
+/* ==========================================
+   19. MÓVILES
+========================================== */
 
 @media (max-width: 650px) {
   html {
-    scroll-padding-top: 72px;
+    scroll-padding-top: 76px;
   }
 
   .site-header {
     min-height: 72px;
     padding: 14px 6%;
+    gap: 12px;
   }
 
   .logo {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     letter-spacing: 3px;
   }
 
   .logo span {
-    font-size: 0.48rem;
+    font-size: 0.46rem;
   }
 
   .menu-toggle {
     display: block;
+    order: 3;
     z-index: 102;
+    flex-shrink: 0;
+  }
+
+  .header-controls {
+    margin-left: auto;
+    order: 2;
   }
 
   .main-nav {
@@ -692,7 +1116,7 @@ a:focus-visible {
     background: rgba(10, 10, 10, 0.98);
     visibility: hidden;
     opacity: 0;
-    transition: opacity 0.25s ease, visibility 0.25s;
+    transition: opacity 0.25s, visibility 0.25s;
   }
 
   .main-nav.open {
@@ -716,32 +1140,55 @@ a:focus-visible {
     transform: translateY(-8px) rotate(-45deg);
   }
 
-  .hero {
-    min-height: 590px;
-    height: 78vh;
+  .hero-enhanced {
+    min-height: 620px;
+    height: 82svh;
     padding: 8% 6%;
+  }
+
+  .hero-backdrop {
     background-position: center;
   }
 
   .hero h1 {
-    font-size: clamp(3.2rem, 13vw, 5.2rem);
+    font-size: clamp(2.8rem, 11.5vw, 4.8rem);
     letter-spacing: -2px;
   }
 
   .hero-description {
-    font-size: 0.92rem;
+    max-width: 390px;
+    font-size: 0.9rem;
   }
 
-  .hero-caption {
+  .hero-prism {
+    top: 14%;
+    right: -15%;
+    width: 70vw;
+    opacity: 0.3;
+  }
+
+  .hero-actions {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .hero-bottom {
+    left: 6%;
     right: 6%;
-    font-size: 0.55rem;
+    bottom: 20px;
+    font-size: 0.5rem;
+  }
+
+  .hero-bottom span {
+    max-width: 55%;
   }
 
   .editorial-bar {
     justify-content: center;
     flex-wrap: wrap;
-    font-size: 0.58rem;
     text-align: center;
+    font-size: 0.55rem;
   }
 
   .editorial-bar span:last-child {
@@ -757,9 +1204,13 @@ a:focus-visible {
     margin-bottom: 32px;
   }
 
+  .section-heading h2 {
+    font-size: clamp(1.8rem, 8vw, 2.8rem);
+  }
+
   .section-index {
     padding-top: 5px;
-    font-size: 0.55rem;
+    font-size: 0.53rem;
   }
 
   .featured-news,
@@ -769,12 +1220,12 @@ a:focus-visible {
   }
 
   .featured-image {
-    min-height: 300px;
+    min-height: 260px;
     aspect-ratio: 4 / 3;
   }
 
   .featured-copy h3 {
-    font-size: 2rem;
+    font-size: 1.9rem;
   }
 
   .news-grid {
@@ -784,20 +1235,28 @@ a:focus-visible {
   }
 
   .news-card > img {
-    height: 240px;
+    height: 230px;
+  }
+
+  .news-card-content {
+    padding: 23px;
   }
 
   .album-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 28px 14px;
+    gap: 30px 14px;
   }
 
   .album-card h3 {
     font-size: 0.95rem;
   }
 
-  .album-card > p:last-child {
-    font-size: 0.78rem;
+  .album-description {
+    font-size: 0.77rem;
+  }
+
+  .album-number {
+    font-size: 0.54rem;
   }
 
   .album-filters {
@@ -806,7 +1265,7 @@ a:focus-visible {
 
   .filter-button {
     padding: 9px 11px;
-    font-size: 0.59rem;
+    font-size: 0.58rem;
   }
 
   .history-image {
@@ -821,11 +1280,53 @@ a:focus-visible {
   .footer-links {
     gap: 15px;
   }
+
+  .album-dialog {
+    width: 92%;
+    padding: 25px;
+  }
+
+  #back-to-top {
+    right: 15px;
+    bottom: 15px;
+  }
 }
 
-/* ========================================
-   15. ACCESIBILIDAD
-======================================== */
+/* ==========================================
+   20. PANTALLAS MUY PEQUEÑAS
+========================================== */
+
+@media (max-width: 360px) {
+  .logo {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+  }
+
+  .logo span {
+    font-size: 0.4rem;
+  }
+
+  .icon-button {
+    width: 34px;
+    height: 34px;
+  }
+
+  .album-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .album-cover {
+    aspect-ratio: 1 / 1;
+  }
+
+  .section-index {
+    display: none;
+  }
+}
+
+/* ==========================================
+   21. ACCESIBILIDAD Y MOVIMIENTO REDUCIDO
+========================================== */
 
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -835,5 +1336,11 @@ a:focus-visible {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .reveal-ready .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
