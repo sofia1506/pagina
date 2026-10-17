@@ -4,87 +4,142 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Un espacio dedicado a Pink Floyd, su música, sus álbumes y su legado en el rock.">
-  <meta name="theme-color" content="#101010">
-  <title>Pink Floyd | The Sound of a Generation</title>
+  <meta name="description" content="Explora el universo musical de Pink Floyd: álbumes, historia, noticias y legado del rock progresivo.">
+  <meta name="theme-color" content="#090909">
+  <meta property="og:title" content="Pink Floyd | A Musical Universe">
+  <meta property="og:description" content="Un viaje por los sonidos, conceptos y obras de Pink Floyd.">
+  <meta property="og:type" content="website">
+  <title>Pink Floyd | A Musical Universe</title>
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
 <body>
 
-  <!-- NAVEGACIÓN -->
+  <!-- BARRA DE PROGRESO -->
+  <div class="reading-progress" aria-hidden="true">
+    <span id="progress-bar"></span>
+  </div>
+
+  <!-- ENCABEZADO Y NAVEGACIÓN -->
   <header class="site-header">
-    <a href="#inicio" class="logo" aria-label="Pink Floyd, inicio">
-      PINK FLOYD<span>THE OFFICIAL FAN EXPERIENCE</span>
+    <a href="#inicio" class="logo" aria-label="Pink Floyd, ir al inicio">
+      PINK FLOYD
+      <span>A MUSICAL UNIVERSE</span>
     </a>
 
-    <button class="menu-toggle" aria-label="Abrir menú"
-      aria-expanded="false" aria-controls="main-nav">
-      <span></span><span></span><span></span>
+    <button class="menu-toggle"
+      type="button"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="main-nav">
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
 
-    <nav class="main-nav" id="main-nav">
+    <nav class="main-nav" id="main-nav" aria-label="Navegación principal">
       <a href="#inicio">INICIO</a>
       <a href="#noticias">NOTICIAS</a>
       <a href="#albumes">ÁLBUMES</a>
       <a href="#historia">HISTORIA</a>
     </nav>
+
+    <div class="header-controls">
+      <button id="effects-toggle"
+        class="icon-button"
+        type="button"
+        aria-pressed="true"
+        aria-label="Desactivar efectos visuales"
+        title="Desactivar efectos visuales">
+        <span aria-hidden="true">✦</span>
+      </button>
+    </div>
   </header>
 
   <main>
+
     <!-- PORTADA PRINCIPAL -->
-    <section class="hero" id="inicio">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <p class="eyebrow">MÚSICA · ARTE · LEGADO</p>
-        <h1>BEYOND<br>THE <span>ORDINARY</span></h1>
-        <p class="hero-description">
-          Un viaje por los sonidos, las ideas y las imágenes
-          que transformaron la historia del rock.
-        </p>
-        <a href="#noticias" class="button button-light">
-          EXPLORAR <span aria-hidden="true">↘</span>
-        </a>
+    <section class="hero hero-enhanced" id="inicio">
+      <div class="hero-backdrop"></div>
+      <div class="hero-grain"></div>
+
+      <div class="hero-prism" aria-hidden="true">
+        <div class="prism-triangle"></div>
+        <div class="rainbow-beam"></div>
       </div>
-      <div class="hero-caption">A JOURNEY THROUGH SOUND</div>
+
+      <div class="hero-content">
+        <p class="eyebrow">A MUSICAL UNIVERSE · EST. 1965</p>
+
+        <h1>
+          WELCOME TO<br>
+          <span>THE DARK SIDE</span>
+        </h1>
+
+        <p class="hero-description">
+          Explora los sonidos, los conceptos y las obras
+          que transformaron la historia del rock.
+          Un viaje más allá de lo convencional.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#albumes" class="button button-light">
+            EXPLORAR DISCOS <span aria-hidden="true">↘</span>
+          </a>
+
+          <a href="#historia" class="hero-secondary-link">
+            DESCUBRIR SU HISTORIA
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-bottom">
+        <span>PROGRESSIVE ROCK · PSYCHEDELIA</span>
+        <a href="#noticias">SCROLL TO EXPLORE ↓</a>
+      </div>
     </section>
 
-    <!-- BARRA EDITORIAL -->
+    <!-- FRANJA EDITORIAL -->
     <div class="editorial-bar">
       <span>EST. LONDON, 1965</span>
       <span>PROGRESSIVE ROCK · PSYCHEDELIA</span>
       <span>TIMELESS MUSIC</span>
     </div>
 
-    <!-- NOTICIA PRINCIPAL -->
+    <!-- NOTICIAS -->
     <section class="section news-section" id="noticias">
       <div class="section-heading">
         <div>
-          <p class="eyebrow">LO QUE DEBES CONOCER</p>
-          <h2>ÚLTIMAS <span>NOTICIAS</span></h2>
+          <p class="eyebrow">EL UNIVERSO DE PINK FLOYD</p>
+          <h2>ÚLTIMAS <span>HISTORIAS</span></h2>
         </div>
-        <span class="section-index">01 / NEWS</span>
+        <span class="section-index">01 / STORIES</span>
       </div>
 
+      <!-- NOTICIA DESTACADA -->
       <article class="featured-news">
-        <a class="featured-image" href="#albumes"
-          aria-label="Explorar el álbum Meddle">
+        <a class="featured-image"
+          href="#albumes"
+          aria-label="Descubrir el álbum Meddle">
           <img
             src="https://images.unsplash.com/photo-1461360228754-6e81c478b882?auto=format&fit=crop&w=1400&q=85"
-            alt="Vinilo y equipo de música en una atmósfera oscura"
+            alt="Imagen editorial de arte y música"
             loading="lazy">
           <span class="image-label">FEATURED STORY</span>
         </a>
 
         <div class="featured-copy">
           <p class="article-meta">MÚSICA · ÁLBUMES · 1971</p>
+
           <h3>MEDDLE: EL ÁLBUM QUE ABRIÓ NUEVOS HORIZONTES</h3>
+
           <p>
-            Publicado en 1971, Meddle marcó una etapa decisiva en la
-            evolución sonora de Pink Floyd. Desde sus atmósferas
-            experimentales hasta la épica de “Echoes”, el álbum
-            anticipó nuevos caminos para el rock progresivo.
+            Publicado en 1971, Meddle marcó una etapa decisiva en
+            la evolución sonora de Pink Floyd. Sus atmósferas
+            experimentales y la composición “Echoes” anticiparon
+            nuevos caminos para el rock progresivo.
           </p>
+
           <a href="#albumes" class="text-link">
             DESCUBRIR EL ÁLBUM <span aria-hidden="true">↗</span>
           </a>
@@ -96,13 +151,22 @@
         <article class="news-card">
           <img
             src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&q=80"
-            alt="Escenario musical iluminado"
+            alt="Escenario iluminado durante un espectáculo musical"
             loading="lazy">
+
           <div class="news-card-content">
             <p class="article-meta">EN VIVO · HISTORIA</p>
+
             <h3>EL ARTE DE CREAR EXPERIENCIAS SONORAS</h3>
-            <p>Luces, sonido y proyecciones: una nueva forma de vivir la música.</p>
-            <a href="#historia" class="text-link">LEER MÁS ↗</a>
+
+            <p>
+              Luces, sonido y proyecciones: una nueva forma de
+              experimentar la música en directo.
+            </p>
+
+            <a href="#historia" class="text-link">
+              LEER MÁS ↗
+            </a>
           </div>
         </article>
 
@@ -111,49 +175,110 @@
             src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=900&q=80"
             alt="Micrófono en un ambiente de concierto"
             loading="lazy">
+
           <div class="news-card-content">
             <p class="article-meta">CULTURA · LEGADO</p>
+
             <h3>UNA BANDA QUE TRASCENDIÓ GENERACIONES</h3>
-            <p>La influencia de Pink Floyd continúa inspirando a músicos y artistas.</p>
-            <a href="#historia" class="text-link">LEER MÁS ↗</a>
+
+            <p>
+              La influencia de Pink Floyd continúa inspirando a
+              músicos, artistas y nuevas generaciones.
+            </p>
+
+            <a href="#historia" class="text-link">
+              LEER MÁS ↗
+            </a>
           </div>
         </article>
       </div>
+
       <p class="editorial-note">
-        Nota: esta es una página de fans. Las noticias presentadas
-        son contenido editorial de ejemplo, no anuncios oficiales.
+        Este sitio es un proyecto independiente de fans.
+        Los artículos son contenido editorial de ejemplo y no
+        representan anuncios oficiales de la banda.
       </p>
     </section>
 
-    <!-- ÁLBUMES -->
+    <!-- DISCOGRAFÍA -->
     <section class="albums-section" id="albumes">
       <div class="section">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">DISCOGRAFÍA ESENCIAL</p>
+            <p class="eyebrow">EXPLORA SU MÚSICA</p>
             <h2>OBRAS <span>ICÓNICAS</span></h2>
           </div>
           <span class="section-index">02 / RECORDS</span>
         </div>
 
+        <!-- FILTROS -->
         <div class="album-filters" role="group" aria-label="Filtrar álbumes">
-          <button class="filter-button active" data-filter="todos">TODOS</button>
-          <button class="filter-button" data-filter="clasico">CLÁSICOS</button>
-          <button class="filter-button" data-filter="experimental">EXPERIMENTALES</button>
+          <button class="filter-button active"
+            type="button"
+            data-filter="todos"
+            aria-pressed="true">
+            TODOS
+          </button>
+
+          <button class="filter-button"
+            type="button"
+            data-filter="clasico"
+            aria-pressed="false">
+            CLÁSICOS
+          </button>
+
+          <button class="filter-button"
+            type="button"
+            data-filter="experimental"
+            aria-pressed="false">
+            EXPERIMENTALES
+          </button>
         </div>
 
+        <!-- BUSCADOR -->
+        <div class="album-search">
+          <label for="album-search-input">
+            BUSCAR EN LA DISCOGRAFÍA
+          </label>
+
+          <input
+            type="search"
+            id="album-search-input"
+            placeholder="Ej. Meddle, The Wall..."
+            autocomplete="off">
+
+          <p id="search-status"
+            class="search-status"
+            aria-live="polite">
+            4 álbumes encontrados
+          </p>
+        </div>
+
+        <!-- TARJETAS DE ÁLBUMES -->
         <div class="album-grid">
+
           <article class="album-card" data-category="clasico">
             <div class="album-cover">
               <img
                 src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=700&q=85"
-                alt="Equipo de audio y música"
+                alt="Equipo de audio en un estudio musical"
                 loading="lazy">
               <span class="album-year">1973</span>
             </div>
+
             <p class="album-number">01 — STUDIO ALBUM</p>
             <h3>The Dark Side of the Moon</h3>
-            <p>Una exploración del tiempo, la vida y la condición humana.</p>
+
+            <p class="album-description">
+              Una exploración del tiempo, la vida y la condición humana.
+            </p>
+
+            <button class="album-details-button"
+              type="button"
+              data-album="dark-side"
+              aria-label="Ver detalles de The Dark Side of the Moon">
+              EXPLORAR ÁLBUM <span aria-hidden="true">↗</span>
+            </button>
           </article>
 
           <article class="album-card" data-category="clasico">
@@ -164,41 +289,75 @@
                 loading="lazy">
               <span class="album-year">1975</span>
             </div>
+
             <p class="album-number">02 — STUDIO ALBUM</p>
             <h3>Wish You Were Here</h3>
-            <p>Una reflexión sobre la ausencia, la distancia y la industria musical.</p>
+
+            <p class="album-description">
+              Una reflexión sobre la ausencia, la distancia y la industria musical.
+            </p>
+
+            <button class="album-details-button"
+              type="button"
+              data-album="wish-you-were-here"
+              aria-label="Ver detalles de Wish You Were Here">
+              EXPLORAR ÁLBUM <span aria-hidden="true">↗</span>
+            </button>
           </article>
 
           <article class="album-card" data-category="experimental">
             <div class="album-cover">
               <img
                 src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=700&q=85"
-                alt="Micrófono bajo luces de escenario"
+                alt="Micrófono en un escenario oscuro"
                 loading="lazy">
               <span class="album-year">1971</span>
             </div>
+
             <p class="album-number">03 — STUDIO ALBUM</p>
             <h3>Meddle</h3>
-            <p>Experimentación sonora y paisajes musicales que culminan en “Echoes”.</p>
+
+            <p class="album-description">
+              Experimentación sonora y paisajes musicales que culminan en “Echoes”.
+            </p>
+
+            <button class="album-details-button"
+              type="button"
+              data-album="meddle"
+              aria-label="Ver detalles de Meddle">
+              EXPLORAR ÁLBUM <span aria-hidden="true">↗</span>
+            </button>
           </article>
 
           <article class="album-card" data-category="clasico">
             <div class="album-cover">
               <img
                 src="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=700&q=85"
-                alt="Público frente a un escenario"
+                alt="Público frente a un escenario de concierto"
                 loading="lazy">
               <span class="album-year">1979</span>
             </div>
+
             <p class="album-number">04 — STUDIO ALBUM</p>
             <h3>The Wall</h3>
-            <p>Una historia conceptual sobre el aislamiento, el miedo y la identidad.</p>
+
+            <p class="album-description">
+              Una historia conceptual sobre el aislamiento, el miedo y la identidad.
+            </p>
+
+            <button class="album-details-button"
+              type="button"
+              data-album="the-wall"
+              aria-label="Ver detalles de The Wall">
+              EXPLORAR ÁLBUM <span aria-hidden="true">↗</span>
+            </button>
           </article>
+
         </div>
       </div>
     </section>
 
-    <!-- HISTORIA -->
+    <!-- HISTORIA DE LA BANDA -->
     <section class="history-section section" id="historia">
       <div class="history-image">
         <img
@@ -206,53 +365,117 @@
           alt="Escenario iluminado durante un concierto"
           loading="lazy">
       </div>
+
       <div class="history-copy">
         <p class="eyebrow">MÁS QUE UNA BANDA</p>
-        <h2>EL SONIDO DE<br>OTRA <span>DIMENSIÓN</span></h2>
+
+        <h2>
+          EL SONIDO DE<br>
+          OTRA <span>DIMENSIÓN</span>
+        </h2>
+
         <p>
           Desde la escena londinense de los años sesenta, Pink Floyd
           desarrolló un lenguaje musical propio, combinando rock
-          progresivo, experimentación electrónica, letras
-          introspectivas y espectáculos audiovisuales.
+          progresivo, experimentación sonora, letras introspectivas
+          y espectáculos audiovisuales.
         </p>
+
         <p>
-          Su música invita a cuestionar el tiempo, la sociedad,
+          Su música invita a reflexionar sobre el tiempo, la sociedad,
           la soledad y los límites de la experiencia humana.
         </p>
-        <a href="#inicio" class="button button-outline">VOLVER AL INICIO ↑</a>
+
+        <a href="https://www.pinkfloyd.com/"
+          class="button button-outline"
+          target="_blank"
+          rel="noopener noreferrer">
+          VISITAR SITIO OFICIAL ↗
+        </a>
       </div>
     </section>
 
-    <!-- CITA -->
+    <!-- CITA MUSICAL -->
     <section class="quote-section">
       <span class="quote-mark" aria-hidden="true">“</span>
-      <p>THERE IS NO DARK SIDE OF THE MOON REALLY...</p>
-      <span class="quote-author">— ECLIPSE, THE DARK SIDE OF THE MOON</span>
+
+      <p>
+        THERE IS NO DARK SIDE OF THE MOON REALLY...
+      </p>
+
+      <span class="quote-author">
+        — ECLIPSE · THE DARK SIDE OF THE MOON
+      </span>
     </section>
+
   </main>
 
   <!-- PIE DE PÁGINA -->
   <footer class="site-footer">
     <a href="#inicio" class="footer-logo">PINK FLOYD</a>
-    <p>UNA EXPERIENCIA EDITORIAL DEDICADA A SU LEGADO MUSICAL.</p>
+
+    <p>
+      UNA EXPERIENCIA EDITORIAL DEDICADA A SU LEGADO MUSICAL.
+    </p>
+
     <div class="footer-links">
       <a href="#noticias">Noticias</a>
       <a href="#albumes">Discografía</a>
       <a href="#historia">Historia</a>
-      <a href="https://www.pinkfloyd.com/" target="_blank"
-         rel="noopener noreferrer">Sitio oficial ↗</a>
+
+      <a href="https://www.pinkfloyd.com/"
+        target="_blank"
+        rel="noopener noreferrer">
+        Sitio oficial ↗
+      </a>
     </div>
+
     <p class="copyright">
-      © <span id="current-year"></span> FAN PROJECT ·
-      Pink Floyd es una marca y nombre artístico de sus respectivos titulares.
+      © <span id="current-year"></span> FAN PROJECT.
+      Pink Floyd y sus elementos distintivos pertenecen a sus
+      respectivos titulares. Sitio independiente, sin afiliación oficial.
     </p>
   </footer>
 
-</body>
-  
-<!-- Barra de progreso de lectura -->
-<div class="reading-progress" aria-hidden="true">
-  <span id="progress-bar"></span>
-</div>
+  <!-- VENTANA EMERGENTE DE ÁLBUMES -->
+  <dialog id="album-dialog" class="album-dialog"
+    aria-labelledby="dialog-title">
 
+    <button type="button"
+      id="close-dialog"
+      class="dialog-close"
+      aria-label="Cerrar detalles">
+      &times;
+    </button>
+
+    <p class="eyebrow">PINK FLOYD · DISCOGRAFÍA</p>
+
+    <p class="dialog-year" id="dialog-year"></p>
+
+    <h2 id="dialog-title">Álbum</h2>
+
+    <p id="dialog-description"></p>
+
+    <h3>EL ÁLBUM EN CONTEXTO</h3>
+
+    <p id="dialog-context"></p>
+
+    <a id="dialog-listen"
+      class="button button-light"
+      href="https://www.pinkfloyd.com/"
+      target="_blank"
+      rel="noopener noreferrer">
+      MÁS INFORMACIÓN ↗
+    </a>
+  </dialog>
+
+  <!-- BOTÓN VOLVER ARRIBA -->
+  <button id="back-to-top"
+    type="button"
+    aria-label="Volver al inicio"
+    title="Volver al inicio">
+    ↑
+  </button>
+
+</body>
 </html>
