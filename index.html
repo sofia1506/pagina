@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Un espacio dedicado a Pink Floyd, su música, sus álbumes y su legado en el rock.">
+  <meta name="theme-color" content="#101010">
+  <title>Pink Floyd | The Sound of a Generation</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <!-- NAVEGACIÓN -->
+  <header class="site-header">
+    <a href="#inicio" class="logo" aria-label="Pink Floyd, inicio">
+      PINK FLOYD<span>THE OFFICIAL FAN EXPERIENCE</span>
+    </a>
+
+    <button class="menu-toggle" aria-label="Abrir menú"
+      aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="main-nav" id="main-nav">
+      <a href="#inicio">INICIO</a>
+      <a href="#noticias">NOTICIAS</a>
+      <a href="#albumes">ÁLBUMES</a>
+      <a href="#historia">HISTORIA</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- PORTADA PRINCIPAL -->
+    <section class="hero" id="inicio">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="eyebrow">MÚSICA · ARTE · LEGADO</p>
+        <h1>BEYOND<br>THE <span>ORDINARY</span></h1>
+        <p class="hero-description">
+          Un viaje por los sonidos, las ideas y las imágenes
+          que transformaron la historia del rock.
+        </p>
+        <a href="#noticias" class="button button-light">
+          EXPLORAR <span aria-hidden="true">↘</span>
+        </a>
+      </div>
+      <div class="hero-caption">A JOURNEY THROUGH SOUND</div>
+    </section>
+
+    <!-- BARRA EDITORIAL -->
+    <div class="editorial-bar">
+      <span>EST. LONDON, 1965</span>
+      <span>PROGRESSIVE ROCK · PSYCHEDELIA</span>
+      <span>TIMELESS MUSIC</span>
+    </div>
+
+    <!-- NOTICIA PRINCIPAL -->
+    <section class="section news-section" id="noticias">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">LO QUE DEBES CONOCER</p>
+          <h2>ÚLTIMAS <span>NOTICIAS</span></h2>
+        </div>
+        <span class="section-index">01 / NEWS</span>
+      </div>
+
+      <article class="featured-news">
+        <a class="featured-image" href="#albumes"
+          aria-label="Explorar el álbum Meddle">
+          <img
+            src="https://images.unsplash.com/photo-1461360228754-6e81c478b882?auto=format&fit=crop&w=1400&q=85"
+            alt="Vinilo y equipo de música en una atmósfera oscura"
+            loading="lazy">
+          <span class="image-label">FEATURED STORY</span>
+        </a>
+
+        <div class="featured-copy">
+          <p class="article-meta">MÚSICA · ÁLBUMES · 1971</p>
+          <h3>MEDDLE: EL ÁLBUM QUE ABRIÓ NUEVOS HORIZONTES</h3>
+          <p>
+            Publicado en 1971, Meddle marcó una etapa decisiva en la
+            evolución sonora de Pink Floyd. Desde sus atmósferas
+            experimentales hasta la épica de “Echoes”, el álbum
+            anticipó nuevos caminos para el rock progresivo.
+          </p>
+          <a href="#albumes" class="text-link">
+            DESCUBRIR EL ÁLBUM <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- NOTICIAS SECUNDARIAS -->
+      <div class="news-grid">
+        <article class="news-card">
+          <img
+            src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&q=80"
+            alt="Escenario musical iluminado"
+            loading="lazy">
+          <div class="news-card-content">
+            <p class="article-meta">EN VIVO · HISTORIA</p>
+            <h3>EL ARTE DE CREAR EXPERIENCIAS SONORAS</h3>
+            <p>Luces, sonido y proyecciones: una nueva forma de vivir la música.</p>
+            <a href="#historia" class="text-link">LEER MÁS ↗</a>
+          </div>
+        </article>
+
+        <article class="news-card">
+          <img
+            src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=900&q=80"
+            alt="Micrófono en un ambiente de concierto"
+            loading="lazy">
+          <div class="news-card-content">
+            <p class="article-meta">CULTURA · LEGADO</p>
+            <h3>UNA BANDA QUE TRASCENDIÓ GENERACIONES</h3>
+            <p>La influencia de Pink Floyd continúa inspirando a músicos y artistas.</p>
+            <a href="#historia" class="text-link">LEER MÁS ↗</a>
+          </div>
+        </article>
+      </div>
+      <p class="editorial-note">
+        Nota: esta es una página de fans. Las noticias presentadas
+        son contenido editorial de ejemplo, no anuncios oficiales.
+      </p>
+    </section>
+
+    <!-- ÁLBUMES -->
+    <section class="albums-section" id="albumes">
+      <div class="section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">DISCOGRAFÍA ESENCIAL</p>
+            <h2>OBRAS <span>ICÓNICAS</span></h2>
+          </div>
+          <span class="section-index">02 / RECORDS</span>
+        </div>
+
+        <div class="album-filters" role="group" aria-label="Filtrar álbumes">
+          <button class="filter-button active" data-filter="todos">TODOS</button>
+          <button class="filter-button" data-filter="clasico">CLÁSICOS</button>
+          <button class="filter-button" data-filter="experimental">EXPERIMENTALES</button>
+        </div>
+
+        <div class="album-grid">
+          <article class="album-card" data-category="clasico">
+            <div class="album-cover">
+              <img
+                src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=700&q=85"
+                alt="Equipo de audio y música"
+                loading="lazy">
+              <span class="album-year">1973</span>
+            </div>
+            <p class="album-number">01 — STUDIO ALBUM</p>
+            <h3>The Dark Side of the Moon</h3>
+            <p>Una exploración del tiempo, la vida y la condición humana.</p>
+          </article>
+
+          <article class="album-card" data-category="clasico">
+            <div class="album-cover">
+              <img
+                src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=700&q=85"
+                alt="Luces de un espectáculo musical"
+                loading="lazy">
+              <span class="album-year">1975</span>
+            </div>
+            <p class="album-number">02 — STUDIO ALBUM</p>
+            <h3>Wish You Were Here</h3>
+            <p>Una reflexión sobre la ausencia, la distancia y la industria musical.</p>
+          </article>
+
+          <article class="album-card" data-category="experimental">
+            <div class="album-cover">
+              <img
+                src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=700&q=85"
+                alt="Micrófono bajo luces de escenario"
+                loading="lazy">
+              <span class="album-year">1971</span>
+            </div>
+            <p class="album-number">03 — STUDIO ALBUM</p>
+            <h3>Meddle</h3>
+            <p>Experimentación sonora y paisajes musicales que culminan en “Echoes”.</p>
+          </article>
+
+          <article class="album-card" data-category="clasico">
+            <div class="album-cover">
+              <img
+                src="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=700&q=85"
+                alt="Público frente a un escenario"
+                loading="lazy">
+              <span class="album-year">1979</span>
+            </div>
+            <p class="album-number">04 — STUDIO ALBUM</p>
+            <h3>The Wall</h3>
+            <p>Una historia conceptual sobre el aislamiento, el miedo y la identidad.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- HISTORIA -->
+    <section class="history-section section" id="historia">
+      <div class="history-image">
+        <img
+          src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=1200&q=85"
+          alt="Escenario iluminado durante un concierto"
+          loading="lazy">
+      </div>
+      <div class="history-copy">
+        <p class="eyebrow">MÁS QUE UNA BANDA</p>
+        <h2>EL SONIDO DE<br>OTRA <span>DIMENSIÓN</span></h2>
+        <p>
+          Desde la escena londinense de los años sesenta, Pink Floyd
+          desarrolló un lenguaje musical propio, combinando rock
+          progresivo, experimentación electrónica, letras
+          introspectivas y espectáculos audiovisuales.
+        </p>
+        <p>
+          Su música invita a cuestionar el tiempo, la sociedad,
+          la soledad y los límites de la experiencia humana.
+        </p>
+        <a href="#inicio" class="button button-outline">VOLVER AL INICIO ↑</a>
+      </div>
+    </section>
+
+    <!-- CITA -->
+    <section class="quote-section">
+      <span class="quote-mark" aria-hidden="true">“</span>
+      <p>THERE IS NO DARK SIDE OF THE MOON REALLY...</p>
+      <span class="quote-author">— ECLIPSE, THE DARK SIDE OF THE MOON</span>
+    </section>
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="site-footer">
+    <a href="#inicio" class="footer-logo">PINK FLOYD</a>
+    <p>UNA EXPERIENCIA EDITORIAL DEDICADA A SU LEGADO MUSICAL.</p>
+    <div class="footer-links">
+      <a href="#noticias">Noticias</a>
+      <a href="#albumes">Discografía</a>
+      <a href="#historia">Historia</a>
+      <a href="https://www.pinkfloyd.com/" target="_blank"
+         rel="noopener noreferrer">Sitio oficial ↗</a>
+    </div>
+    <p class="copyright">
+      © <span id="current-year"></span> FAN PROJECT ·
+      Pink Floyd es una marca y nombre artístico de sus respectivos titulares.
+    </p>
+  </footer>
+
+</body>
+</html>
